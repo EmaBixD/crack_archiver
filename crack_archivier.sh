@@ -7,8 +7,13 @@ command_exists() {
 
 # Funzione per installare i pacchetti necessari
 install_dependencies() {
-    sudo apt-get update
-    sudo apt-get install -y unzip unrar p7zip-full
+    if command_exists apt-get; then
+        apt-get update
+        apt-get install -y unzip unrar p7zip-full
+    else
+        echo "Impossibile installare le dipendenze automaticamente. Per favore installa manualmente: unzip, unrar, p7zip-full."
+        exit 1
+    fi
 }
 
 # Verifica delle dipendenze
